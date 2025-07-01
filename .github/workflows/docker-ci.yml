@@ -1,0 +1,31 @@
+name: 🧪 CI con pytest y 🐳 build Docker
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  test-build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Clonar el repo
+        uses: actions/checkout@v3
+
+      - name: 🐍 Configurar Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+
+      - name: 🧪 Instalar dependencias y pytest
+        run: |
+          pip install --no-cache-dir -r requirements.txt
+          pip install pytest
+
+      - name: 🧪 Ejecutar pruebas
+        run: pytest
+
+      - name: 🐳 Construir imagen Docker
+        run: docker build -t calculadora-web .

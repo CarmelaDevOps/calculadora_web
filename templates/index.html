@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora Web DevOps</title>
+</head>
+<body>
+    <h1>🧮 Calculadora Web</h1>
+
+    <form method="POST">
+        <label for="numero1">Número 1:</label>
+        <input type="number" step="any" name="numero1" required><br><br>
+
+        <label for="numero2">Número 2:</label>
+        <input type="number" step="any" name="numero2" required><br><br>
+
+        <label for="operacion">Operación:</label>
+        <select name="operacion">
+            <option value="suma">➕ Sumar</option>
+            <option value="resta">➖ Restar</option>
+            <option value="multiplicacion">✖️ Multiplicar</option>
+            <option value="division">➗ Dividir</option>
+        </select><br><br>
+
+        <button type="submit">Calcular</button>
+    </form>
+
+    {% if resultado is not none %}
+        <h2>✅ Resultado: {{ resultado }}</h2>
+    {% endif %}
+
+    {% if error %}
+        <h3 style="color:red;">❌ Error: {{ error }}</h3>
+    {% endif %}
+</body>
+</html>
